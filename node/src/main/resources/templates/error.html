@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>error</title>
+</head>
+<body>
+<center>
+    <div th:if="${param.error}" >
+        无效用户名和密码</div>
+    <div th:if="${param.logout}">
+        你已经退出登录</div>
+    <h1>您还没有登录，请先登录！</h1>
+    <form action="/test" method="">
+        <button type="submit"  >去登录</button>
+    </form>
+</center>
+</body>
+</html>

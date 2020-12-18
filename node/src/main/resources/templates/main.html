@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+    <style>
+        table{
+            width: 300px;
+
+            text-align: center;
+        }
+        td{
+            width: 100px;
+        }
+    </style>
+<body>
+<center>
+    <h1>所有宠物</h1>
+    <table >
+        <tr>
+            <td colspan="3" >
+                <label >一共</label>
+                <span th:text="${totalPages}"></span>
+                页
+            </td>
+        </tr>
+        <!--循环遍历info-->
+        <tr th:each="in: ${info}">
+            <td th:text="${in.id}" ></td>
+            <td th:text="${in.name}"></td>
+            <td th:text="${in.birthDate}"></td>
+        </tr>
+
+        <tr>
+            <td colspan="3">
+                <label>当前页：[[${page}+1]]</label>
+                <button th:onclick="'javascript:prePage()'">上一页</button>
+                <button  th:onclick="'javascript:nextPage()'">下一页</button>
+            </td>
+        </tr>
+    </table>
+    <script th:inline="javascript">
+        let page=[[${page}]];
+        console.log("page:",page);
+        prePage=()=>{
+            page==0?alert("已经是第一页了！"):page--;
+            console.log("上一页",page);
+            window.location.href="/main/"+page;
+
+
+        }
+        nextPage=()=> {
+            page==([[${totalPages}]]-1)?alert("已经是最后一页了！"):page++;
+            console.log("下一页：",page);
+            window.location.href="/main/"+page;
+        }
+    </script>
+</center>
+</body>
+</html>
